@@ -23,34 +23,130 @@ if "topic" not in st.session_state:
 # --- Custom CSS ---
 st.markdown("""
 <style>
-.stApp {
-    background: linear-gradient(135deg, #fdfdfd, #f7f7f7, #ececec);
-    font-family: 'Segoe UI', sans-serif;
+
+.stApp{
+    background:linear-gradient(135deg,#fdfdfd,#f7f7f7,#ececec);
+    font-family:'Segoe UI',sans-serif;
 }
-.title {
-    text-align: center;
-    font-size: 72px;
-    font-weight: 700;
-    color: #2c3e50;
+
+.title{
+    text-align:center;
+    font-size:4rem;
+    font-weight:700;
+    color:#2c3e50;
 }
-.tag {
-    text-align: center;
-    font-size: 24px;
-    color: #555;
-    margin-bottom: 35px;
+
+.tag{
+    text-align:center;
+    font-size:1.4rem;
+    color:#555;
+    margin-bottom:25px;
 }
-.topic-box {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.12);
-    margin-top: 20px;
+
+.topic-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+    margin-top:20px;
 }
-.stButton>button {
-    font-size: 18px !important;
-    border-radius: 8px;
-    padding: 10px 20px;
+
+.stButton>button{
+    width:100%;
+    min-height:55px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    transition:0.3s;
 }
+
+.stButton>button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+/* Tablet */
+
+@media (max-width:1024px){
+
+.title{
+    font-size:3rem;
+}
+
+.tag{
+    font-size:1.2rem;
+}
+
+.topic-box{
+    padding:22px;
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.title{
+    font-size:2.2rem;
+}
+
+.tag{
+    font-size:1rem;
+}
+
+.topic-box{
+    padding:16px;
+}
+
+.stButton>button{
+    font-size:16px;
+}
+
+h1{
+    font-size:28px !important;
+}
+
+h2{
+    font-size:24px !important;
+}
+
+h3{
+    font-size:20px !important;
+}
+
+p,li{
+    font-size:15px !important;
+    line-height:1.8;
+}
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+.title{
+    font-size:1.8rem;
+}
+
+.tag{
+    font-size:.9rem;
+}
+
+p,li{
+    font-size:14px !important;
+}
+
+}
+            
+.block-container{
+    padding-top:2rem;
+    padding-bottom:2rem;
+    padding-left:5%;
+    padding-right:5%;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -3458,7 +3554,14 @@ def home():
         st.rerun()
 
 def topics():
-    st.title(" Clinical Research Topics")
+    st.markdown(
+    """
+    <h1 style='text-align:center;'>
+        📗 Clinical Research Topics
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
     if st.button("⬅ Back to Home"):
         st.session_state.page="home"
         st.rerun()
@@ -3477,6 +3580,9 @@ def content():
         st.rerun()
 
     st.markdown('<div class="topic-box">', unsafe_allow_html=True)
+    st.markdown(f"# {st.session_state.topic}")
+
+    st.divider()
     st.markdown(CONTENT[st.session_state.topic])
     st.markdown("</div>", unsafe_allow_html=True)
 
