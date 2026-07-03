@@ -3577,13 +3577,7 @@ def topics():
                     st.session_state.page = "content"
                     st.rerun()
 
-    cols = st.columns(2)
-    for i,t in enumerate(TOPICS):
-        with cols[i%2]:
-            if st.button(f"{i+1}. {t}", key=t, use_container_width=True):
-                st.session_state.topic=t
-                st.session_state.page="content"
-                st.rerun()
+    
 
 def content():
     if st.button("⬅ Back to Topics"):
