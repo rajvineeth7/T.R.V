@@ -3554,17 +3554,28 @@ def home():
         st.rerun()
 
 def topics():
-    st.markdown(
-    """
-    <h1 style='text-align:center;'>
-        📗 Clinical Research Topics
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
+    st.title("📚 Clinical Research Topics")
+
     if st.button("⬅ Back to Home"):
-        st.session_state.page="home"
+        st.session_state.page = "home"
         st.rerun()
+
+    for i in range(0, len(TOPICS), 2):
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button(f"{i+1}. {TOPICS[i]}", key=TOPICS[i], use_container_width=True):
+                st.session_state.topic = TOPICS[i]
+                st.session_state.page = "content"
+                st.rerun()
+
+        if i + 1 < len(TOPICS):
+            with col2:
+                if st.button(f"{i+2}. {TOPICS[i+1]}", key=TOPICS[i+1], use_container_width=True):
+                    st.session_state.topic = TOPICS[i+1]
+                    st.session_state.page = "content"
+                    st.rerun()
 
     cols = st.columns(2)
     for i,t in enumerate(TOPICS):
