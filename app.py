@@ -3554,7 +3554,7 @@ def home():
         st.rerun()
 
 def topics():
-    st.title("📚 Clinical Research Topics")
+    st.title("📗 Clinical Research Topics")
 
     if st.button("⬅ Back to Home"):
         st.session_state.page = "home"
